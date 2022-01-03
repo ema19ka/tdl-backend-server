@@ -16,6 +16,9 @@ import {
   
     @Column()
     username: string;
+
+    @Column()
+    mail: string;
   
     @Column()
     password: string;
