@@ -1,4 +1,12 @@
-import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  ValidationPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
 import { User } from './entity/User.entity';
 import { UsersService } from './users.service';
 
@@ -9,5 +17,11 @@ export class UsersController {
   @Post('/register') // mit :/ parameter
   public registerUser(@Body(ValidationPipe) user: User): Promise<User> {
     return this.usersService.registerUser(user);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('/all')
+  protected getAllUsers() {
+    return 'true';
   }
 }

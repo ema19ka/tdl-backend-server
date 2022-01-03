@@ -28,6 +28,13 @@ export class AuthService {
     // jwt implementieren
     //token erzeugen
     const jwt = await this.JWTService.signAsync({ user });
-    return jwt;
+    // cookie anhängen (an response)
+    response.cookie('jwt', jwt, {
+      // name, payload, options des cookie
+      httpOnly: true, // damits am frontend nicht ausgelesen werden kanns
+      sameSite: 'none',
+      secure: true,
+    });
+    return user;
   }
 }
