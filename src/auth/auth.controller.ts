@@ -7,6 +7,7 @@ import { LoginDto } from './dtos/Login.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  // @UseInterceptors()
   @Post('/login')
   protected async login(
     @Body(ValidationPipe) loginDto: LoginDto,

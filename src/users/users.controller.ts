@@ -15,10 +15,11 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post('/register') // mit :/ parameter
-  public registerUser(@Body(ValidationPipe) user: User): Promise<User> {
+  async registerUser(@Body(ValidationPipe) user: User): Promise<User> {
     return this.usersService.registerUser(user);
   }
 
+  // test endpoint for guard
   @UseGuards(AuthGuard)
   @Get('/all')
   protected getAllUsers() {

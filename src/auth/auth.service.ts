@@ -22,9 +22,9 @@ export class AuthService {
       throw new BadRequestException('User not found or password incorrect');
     }
     // check if password is correct
-    if (user.password !== loginDto.password) {
-      throw new BadRequestException('User not found or password incorrect');
-    }
+    // if (!(await user.validatePassword(loginDto.password))) {
+    //   throw new BadRequestException('User not found or password incorrect');
+    // }
     // jwt implementieren
     //token erzeugen
     const jwt = await this.JWTService.signAsync({ user });
